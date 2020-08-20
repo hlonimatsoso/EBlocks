@@ -30,7 +30,14 @@ namespace EBlocks.Api
             services.AddControllers();
 
             services.AddTransient<INorthWindsService, NorthWindService>();
-            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderRepository, DemoOrderRepo>();
+
+            services.AddCors(o => o.AddPolicy("Policy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
         }
 
@@ -43,6 +50,8 @@ namespace EBlocks.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("Policy");
 
             app.UseRouting();
 

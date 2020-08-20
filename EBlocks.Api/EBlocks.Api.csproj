@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EBlocks\EBlocks.csproj" />
+    <ProjectReference Include="..\EBlocks.Common\EBlocks.csproj" />
   </ItemGroup>
 
 

@@ -1,0 +1,26 @@
+﻿@inherits OrdersBase;
+@using EBlocks.Interfaces
+
+<h3>Orders</h3>
+
+@if (this.Orders != null)
+{
+    <ul>
+        @foreach (IOrder item in Orders)
+        {
+            <li>@item.OrderDate</li>
+            Console.WriteLine(item);
+        }
+    </ul>
+}
+
+
+@code {
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        await base.OnInitializedAsync();
+
+    }
+}

@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks.Api", "EBlocks.Api\EBlocks.Api.csproj", "{2A8B95E5-8E4E-43A5-BE07-58402143156E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks.Api", "EBlocks.Api\EBlocks.Api.csproj", "{2A8B95E5-8E4E-43A5-BE07-58402143156E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks", "EBlocks\EBlocks.csproj", "{A2654285-3B10-4729-864D-FC8C93123BB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks.Data", "EBlocks.Data\EBlocks.Data.csproj", "{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks.Data", "EBlocks.Data\EBlocks.Data.csproj", "{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks.NothWindsBlazorApp", "EBlocks.NothWindsBlazorApp\EBlocks.NothWindsBlazorApp.csproj", "{308D3840-C336-4325-9C55-5F6533EA579C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks", "EBlocks.Common\EBlocks.csproj", "{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +21,18 @@ Global
 		{2A8B95E5-8E4E-43A5-BE07-58402143156E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A8B95E5-8E4E-43A5-BE07-58402143156E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8B95E5-8E4E-43A5-BE07-58402143156E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2654285-3B10-4729-864D-FC8C93123BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2654285-3B10-4729-864D-FC8C93123BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2654285-3B10-4729-864D-FC8C93123BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2654285-3B10-4729-864D-FC8C93123BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{308D3840-C336-4325-9C55-5F6533EA579C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308D3840-C336-4325-9C55-5F6533EA579C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308D3840-C336-4325-9C55-5F6533EA579C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308D3840-C336-4325-9C55-5F6533EA579C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
