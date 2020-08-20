@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EBlocks.Api.Repos;
 using EBlocks.Interfaces;
 using EBlocks.Models;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace EBlocks.Api
 
             services.AddTransient<INorthWindsService, NorthWindService>();
             services.AddTransient<IOrderRepository, DemoOrderRepo>();
+            services.AddTransient<IProductRepository, DemoProductRepo>();
+
 
             services.AddCors(o => o.AddPolicy("Policy", builder =>
             {

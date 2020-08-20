@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EBlocks.Models
+namespace EBlocks.Api.Repos
 {
     public class DemoOrderRepo : IOrderRepository
     {

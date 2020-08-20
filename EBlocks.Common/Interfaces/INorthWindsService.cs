@@ -8,5 +8,7 @@ namespace EBlocks.Interfaces
     {
         IOrderRepository OrderRepository { get; set; }
 
+        IProductRepository ProductRepository { get; set; }
+
     }
 }

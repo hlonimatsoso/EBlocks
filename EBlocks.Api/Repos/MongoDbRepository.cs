@@ -1,5 +1,6 @@
 ﻿using EBlocks.Interfaces;
 using EBlocks.Interfaces;
+using EBlocks.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace EBlocks.Models
+namespace EBlocks.Api.Repos
 {
     public class MongoDbRepository<TEntity> : IRepository<TEntity> where TEntity : IBaseCollection
     {
