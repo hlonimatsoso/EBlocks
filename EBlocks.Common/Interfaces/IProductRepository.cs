@@ -4,7 +4,9 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-     public interface IProductRepository
+    public interface IProductRepository : IRepository<IProduct>
     {
+
     }
 }
+ 

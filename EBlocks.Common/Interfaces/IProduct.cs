@@ -2,7 +2,7 @@
 
 namespace EBlocks.Interfaces
 {
-    public interface IProduct
+    public interface IProduct: IBaseCollection
     {
         int ProductID { get; set; }
 

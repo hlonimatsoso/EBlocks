@@ -1,18 +1,58 @@
 ﻿@inherits OrdersBase;
 @using EBlocks.Interfaces
 
-<h3>Orders</h3>
+<h3>NorthWind's Orders</h3>
 
 @if (this.Orders != null)
 {
-    <ul>
-        @foreach (IOrder item in Orders)
-        {
-            <li>@item.OrderDate</li>
-            Console.WriteLine(item);
-        }
-    </ul>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Order #</th>
+                    <th scope="col">Order GUID</th>
+                    <th scope="col">Order Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (IOrder item in Orders)
+                {
+                    <tr>
+                        <th scope="col">@item.OrderID</th>
+                        <td class="col">@item.Id.ToString().Trim()</td>
+                        <td class="col">@item.OrderDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
 }
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Order #</th>
+            <th scope="col">Order GUID</th>
+            <th scope="col">Order Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (this.Orders != null)
+            @foreach (IOrder order in this.Orders)
+            {
+
+                <tr>
+                    <th scope="col">@order.OrderID</th>
+                    <td class="col">@order.Id.ToString().Trim()</td>
+                    <td class="col">@order.OrderDate</td>
+                </tr>
+
+            }
+    </tbody>
+</table>
 
 
 @code {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository:IRepository<IOrder>
     {
          List<IOrder> GetAll();
     }

@@ -1,8 +1,5 @@
 ﻿using EBlocks.Interfaces;
-using EBlocks.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EBlocks.Models
 {
@@ -18,5 +15,6 @@ namespace EBlocks.Models
 
         public Category Category { get; set; }
 
+        public Guid Id { get ; set ; }
     }
 }

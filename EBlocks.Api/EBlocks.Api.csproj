@@ -8,5 +8,9 @@
     <ProjectReference Include="..\EBlocks.Common\EBlocks.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repos\" />
+  </ItemGroup>
+
 
 </Project>
