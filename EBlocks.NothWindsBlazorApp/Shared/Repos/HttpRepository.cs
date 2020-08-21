@@ -34,15 +34,15 @@ namespace EBlocks.NothWindsBlazorApp.Shared.Repos
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll(string path)
         {
             IEnumerable<T> result = default(IEnumerable<T>);
 
             try
             {
-                Console.WriteLine($"Calling {this.ApiBaseUrl}orders");
+                Console.WriteLine($"Calling {this.ApiBaseUrl}{path}");
 
-                var response = await this.HttpClient.GetAsync($"{this.ApiBaseUrl}orders");
+                var response = await this.HttpClient.GetAsync($"{this.ApiBaseUrl}{path}");
 
                 var content = await response.Content.ReadAsStringAsync();
 

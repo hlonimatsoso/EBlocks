@@ -18,7 +18,7 @@ namespace EBlocks.NothWindsBlazorApp.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            this.Orders = await this.Repo.GetAll();
+            this.Orders = await this.Repo.GetAll("orders");
         }
     }
 }

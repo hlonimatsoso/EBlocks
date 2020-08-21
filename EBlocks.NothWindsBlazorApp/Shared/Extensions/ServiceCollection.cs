@@ -32,6 +32,8 @@ namespace EBlocks.NothWindsBlazorApp.Shared.Extensions
         {
             services.AddTransient<IOrdersHttpRepository, OrdersHttpRepository>();
             services.AddTransient<IOrder, Order>();
+            services.AddTransient<IProductsHttpRepository, ProductsHttpRepository>();
+            services.AddTransient<IProduct, Product>();
 
 
             return services;

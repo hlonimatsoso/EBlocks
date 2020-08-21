@@ -1,0 +1,47 @@
+﻿@using EBlocks.Models;
+
+<h3>Products Filter</h3>
+
+<div>
+    <input type="checkbox" value="@isFilteringEnabled"/> Enable filtering
+    <div class="row">
+        <div class="col">
+            Filter Colunm :
+            <select @bind="@SelecteFilterColunm">
+                @foreach (var field in FilterFields)
+                {
+                    <option value=@field>@field</option>
+                }
+            </select>
+
+        </div>
+        <div class="col">
+            Filter Value :
+        </div>
+    </div>
+</div>
+Selected Field: @SelecteFilterColunm;
+
+@code {
+
+    public List<string> FilterFields { get; set; }
+
+    public List<string> CategoryValues { get; set; }
+
+    public List<string> SupplierValues { get; set; }
+
+    bool isFilteringEnabled { get; set; }
+
+    public string SelecteFilterColunm { get; set; }
+
+    public string SelecteFiltervalue { get; set; }
+
+    public string GroupByColunm { get; set; }
+
+    [Parameter] public IEnumerable<Product> List { get; set; }
+
+
+    public void OnFilterColunmChange(ChangeEventArgs e)
+    { }
+
+}

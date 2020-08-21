@@ -9,7 +9,7 @@ namespace EBlocks.Interfaces
 {
     public interface IHttpRepository<T>
     {
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAll(string path);
 
         IHttpResult<T> Add(T item);
 
