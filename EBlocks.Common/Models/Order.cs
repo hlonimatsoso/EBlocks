@@ -11,5 +11,11 @@ namespace EBlocks.Models
         public int OrderID { get; set ; }
         public DateTime OrderDate { get ; set ; }
         public Guid Id { get ; set ; }
+
+        public Order()
+        {
+            this.OrderDate = default(DateTime);
+            this.Id = new Guid();
+        }
     }
 }

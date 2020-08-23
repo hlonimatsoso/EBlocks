@@ -8,11 +8,14 @@ namespace EBlocks.Interfaces
 {
     public interface IRepository<T> where T: IBaseCollection
     {
+
         bool Insert(T entity);
         bool Update(T entity);
         bool Delete(T entity);
         //IList<T> SearchFor(Expression<Func<T, bool>> predicate);
         List<T> GetAll();
         T GetById(Guid id);
+
+
     }
 }

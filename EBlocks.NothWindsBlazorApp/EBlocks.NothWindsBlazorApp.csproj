@@ -39,6 +39,11 @@
     <ProjectReference Include="..\EBlocks.Common\EBlocks.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Categories\" />
+    <Folder Include="Pages\Suppliers\" />
+  </ItemGroup>
+
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 

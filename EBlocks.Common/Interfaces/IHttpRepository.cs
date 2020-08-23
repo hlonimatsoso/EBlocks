@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace EBlocks.Interfaces
 {
-    public interface IHttpRepository<T>
+    public interface IHttpRepository<T>:IObserverOne<T>
     {
+        IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
+
         Task<IEnumerable<T>> GetAll(string path);
 
         IHttpResult<T> Add(T item);

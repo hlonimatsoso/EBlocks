@@ -30,8 +30,9 @@ namespace EBlocks.NothWindsBlazorApp.Shared.Extensions
 
         public static IServiceCollection AddEBlockServices(this IServiceCollection services)
         {
-            services.AddTransient<IOrdersHttpRepository, OrdersHttpRepository>();
             services.AddTransient<IOrder, Order>();
+            services.AddSingleton<IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier>, Oracle>();
+            services.AddTransient<IOrdersHttpRepository, OrdersHttpRepository>();
             services.AddTransient<IProductsHttpRepository, ProductsHttpRepository>();
             services.AddTransient<IProduct, Product>();
 

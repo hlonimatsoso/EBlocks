@@ -1,6 +1,7 @@
 ﻿using EBlocks.Interfaces;
 using EBlocks.Interfaces;
 using EBlocks.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -23,6 +24,8 @@ namespace EBlocks.Api.Repos
 
         private IOptions<AppSettings> _appSettings;
 
+        public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+       
         public MongoDbRepository()
         {
             this._databaseName = this._appSettings.Value.DatabaseName;
@@ -31,6 +34,8 @@ namespace EBlocks.Api.Repos
             GetDatabase();
             GetCollection();
         }
+
+      
 
         public bool Insert(TEntity entity)
         {

@@ -30,9 +30,16 @@ namespace EBlocks.Api
         {
             services.AddControllers();
 
-            services.AddTransient<INorthWindsService, NorthWindService>();
+            services.AddTransient<ISupplier, Supplier>();
+            services.AddTransient<ICategory, Category>();
+            services.AddTransient<IProduct, Product>();
+            services.AddTransient<IOrder, Order>();
+            services.AddTransient<IOrderDetails, OrderDetails>();
+            
             services.AddTransient<IOrderRepository, DemoOrderRepo>();
             services.AddTransient<IProductRepository, DemoProductRepo>();
+            services.AddTransient<INorthWindsService, NorthWindService>();
+
 
 
             services.AddCors(o => o.AddPolicy("Policy", builder =>
@@ -52,9 +59,9 @@ namespace EBlocks.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseCors("Policy");
+
+           // app.UseHttpsRedirection();
 
             app.UseRouting();
 

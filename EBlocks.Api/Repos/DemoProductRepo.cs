@@ -1,7 +1,9 @@
 ﻿using EBlocks.Interfaces;
 using EBlocks.Models;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace EBlocks.Api.Repos
@@ -19,9 +21,12 @@ namespace EBlocks.Api.Repos
             new Product{ProductID = 3,CategoryID = 1,Id = new Guid(),SupplierID = 2,Discontinued = false, ProductName="Another product", QuantityPerUnit=3,ReorderLevel = 20,UnitPrice = 20, UnitsInStock = 9,UnitsOnOrder = 1}
             };
 
-
         }
 
+        public event Action<IProduct> OnCreated;
+        public event Action<IProduct> OnUpdated;
+        public event Action<IProduct> OnDeleted;
+        
         public bool Delete(IProduct entity)
         {
             throw new NotImplementedException();
@@ -39,7 +44,8 @@ namespace EBlocks.Api.Repos
 
         public bool Insert(IProduct entity)
         {
-            throw new NotImplementedException();
+            this._products.Add(entity);
+            return true;
         }
 
         public bool Update(IProduct entity)

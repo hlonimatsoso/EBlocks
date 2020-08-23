@@ -1,7 +1,9 @@
 ﻿using EBlocks.Interfaces;
 using EBlocks.Models;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EBlocks.Api.Repos
@@ -14,14 +16,21 @@ namespace EBlocks.Api.Repos
         public DemoOrderRepo()
         {
             this._orders = new List<IOrder> {
-            new Order{Id = new Guid(),OrderID = 100,OrderDate = DateTime.Now }
+                new Order{Id = new Guid(),OrderID = 100,OrderDate = DateTime.Now }
             };
-
 
         }
 
+        public event Action<IOrder> OnCreated;
+        public event Action<IOrder> OnUpdated;
+        public event Action<IOrder> OnDeleted;
+        //public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
+        //public event Action<IEnumerable<IOrder>> OnCollectionInitialized;
+
+
         public bool Delete(IOrder entity)
         {
+            this.OnDeleted?.Invoke(entity);
             throw new NotImplementedException();
         }
 
@@ -37,7 +46,9 @@ namespace EBlocks.Api.Repos
 
         public bool Insert(IOrder entity)
         {
-            throw new NotImplementedException();
+            this._orders.Add(entity);
+            this.OnCreated?.Invoke(entity);
+            return true;
         }
 
         public bool Update(IOrder entity)

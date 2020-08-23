@@ -21,12 +21,20 @@ namespace EBlocks.NothWindsBlazorApp.Shared.Repos
             }
         }
 
+        public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get ; set ; }
+
         private IConfiguration _config;
 
-        public HttpRepository(HttpClient client, IConfiguration config)
+        public event Action<T> OnCreated;
+        public event Action<T> OnUpdated;
+        public event Action<T> OnDeleted;
+        public event Action<IEnumerable<T>> OnCollectionInitialized;
+
+        public HttpRepository(HttpClient client, IConfiguration config, IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> oracle)
         {
             this.HttpClient = client;
             this._config = config;
+            this.Oracle = oracle;
         }
 
         public IHttpResult<T> Add(T item)
@@ -34,12 +42,13 @@ namespace EBlocks.NothWindsBlazorApp.Shared.Repos
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<T>> GetAll(string path)
+        public virtual async Task<IEnumerable<T>> GetAll(string path)
         {
             IEnumerable<T> result = default(IEnumerable<T>);
 
             try
             {
+
                 Console.WriteLine($"Calling {this.ApiBaseUrl}{path}");
 
                 var response = await this.HttpClient.GetAsync($"{this.ApiBaseUrl}{path}");

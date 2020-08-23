@@ -14,9 +14,10 @@ namespace EBlocks.Api.Controllers
     public class OrdersController : ControllerBase
     {
         private INorthWindsService _service;
-
+        //private IOrderRepository _repo;
         public OrdersController(INorthWindsService service)
         {
+            //this._repo = repo;
             this._service = service;
         }
 
@@ -24,8 +25,8 @@ namespace EBlocks.Api.Controllers
         public List<IOrder>GetAllOrders()
         {
             List<IOrder> result = new List<IOrder>();
-
             result = this._service.OrderRepository.GetAll();
+            //result = this._service.OrderRepository.GetAll();
 
             return result;
         }
