@@ -4,12 +4,15 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface IOrder : IMongoCollection
+    public interface IOrder //: IMongoCollection
     {
-         int OrderID { get; set; }
+        Guid OrderID { get; set; }
 
-          DateTime OrderDate { get; set; }
+        DateTime OrderDate { get; set; }
 
+        string CustomerName { get; set; }
+
+        string CustomerContactNumber { get; set; }
 
     }
 }

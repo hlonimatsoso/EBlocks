@@ -1,22 +1,95 @@
 ﻿@page "/poc"
 @inherits PocBase
-@using MatBlazor
 @using EBlocks.NothWindsBlazorApp.Pages.Categories
 @using EBlocks.NothWindsBlazorApp.Pages.Orders
 @using EBlocks.NothWindsBlazorApp.Pages.Products
 
 
 
-<h3>POC Playground</h3>
-@*<MatButton TrailingIcon="favorite">Text</MatButton>
-<MatButton Raised="true" TrailingIcon="favorite">Raised</MatButton>
-<MatButton Unelevated="true" TrailingIcon="favorite">Unelevated</MatButton>
-<MatButton Outlined="true" TrailingIcon="favorite">Outlined</MatButton>
-<MatButton Dense="true" TrailingIcon="favorite">Dense</MatButton>*@
+<MatDrawerContainer Style="width: 100vw; height: 100vh;">
+    <MatDrawer @bind-Opened="@Opened" Mode="@MatDrawerMode.Modal">
+        Drawer Content
+    </MatDrawer>
+    <MatDrawerContent>
+        <div>
+            <MatButton OnClick="@((e) => ButtonClicked())">Open Menu</MatButton>
+        </div>
+        <h3>POC Playground</h3>
+        <MatButton TrailingIcon="favorite">Text</MatButton>
+        <MatButton Raised="true" TrailingIcon="favorite">Raised</MatButton>
+        <MatButton Unelevated="true" TrailingIcon="favorite">Unelevated</MatButton>
+        <MatButton Outlined="true" TrailingIcon="favorite">Outlined</MatButton>
+        <MatButton Dense="true" TrailingIcon="favorite">Dense</MatButton>
 
 
-<CategoryList />
+        <RadzenButton Text="Rad - Zen"></RadzenButton>
 
-<Orders />
+        <MatAppBarContainer>
+            <MatAppBar Fixed="true">
+                <MatAppBarRow>
+                    <MatAppBarSection>
+                        <MatIconButton Icon="menu"></MatIconButton>
+                        <MatAppBarTitle>MatBlazor - Material Design components for Blazor</MatAppBarTitle>
+                    </MatAppBarSection>
+                    <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                        <MatIconButton Icon="favorite"></MatIconButton>
+                    </MatAppBarSection>
+                </MatAppBarRow>
+            </MatAppBar>
 
-<ListProducts />
+            <MatAppBarContent>
+                Content
+            </MatAppBarContent>
+        </MatAppBarContainer>
+
+        <MatCard class="demo-mat-card">
+            <MatCardContent>
+                <MatCardMedia Wide="true" ImageUrl="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg">
+                    <div class="demo-mat-card-content" style="color: white;">
+                        <MatHeadline6 class="demo-mat-card-clean-margin">
+                            Our Changing Planet
+                        </MatHeadline6>
+                        <MatSubtitle2 class="demo-mat-card-clean-margin">
+                            by Kurt Wagner
+                        </MatSubtitle2>
+                    </div>
+                </MatCardMedia>
+                <MatBody2 class="demo-mat-card-content demo-mat-card-clean-margin">
+                    Visit ten places on our planet that are undergoing the biggest changes today.
+                </MatBody2>
+            </MatCardContent>
+            <MatCardActions>
+                <MatCardActionButtons>
+                    <MatButton>Read</MatButton>
+                    <MatButton>Bookmark</MatButton>
+                </MatCardActionButtons>
+
+                <MatCardActionIcons>
+                    <MatIconButton Icon="@MatIconNames.Favorite"></MatIconButton>
+                    <MatIconButton Icon="@MatIconNames.Dashboard"></MatIconButton>
+                </MatCardActionIcons>
+            </MatCardActions>
+        </MatCard>
+
+        <CategoryList />
+
+        <Orders />
+
+        <ListProducts />
+    </MatDrawerContent>
+</MatDrawerContainer>
+
+<style>
+    .demo-mat-card {
+        max-width: 400px;
+    }
+
+    .demo-mat-card-content {
+        padding: 1rem;
+    }
+
+    .demo-mat-card-clean-margin {
+        margin: 0px;
+    }
+</style>
+

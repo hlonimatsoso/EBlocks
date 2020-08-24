@@ -8,5 +8,11 @@ namespace EBlocks.NothWindsBlazorApp.Pages.POC
 {
     public class PocBase:ComponentBase
     {
+       protected bool Opened = true;
+
+        protected void ButtonClicked()
+        {
+            Opened = !Opened;
+        }
     }
 }

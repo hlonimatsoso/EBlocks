@@ -8,14 +8,16 @@ namespace EBlocks.Models
 {
     public class Order : IOrder
     {
-        public int OrderID { get; set ; }
+        public Guid OrderID { get; set ; }
         public DateTime OrderDate { get ; set ; }
-        public Guid Id { get ; set ; }
+        public string CustomerName { get ; set ; }
+        public string CustomerContactNumber { get ; set ; }
+
+        //public Guid Id { get ; set ; }
 
         public Order()
         {
-            this.OrderDate = default(DateTime);
-            this.Id = new Guid();
+            this.OrderDate = DateTime.Now;
         }
     }
 }
