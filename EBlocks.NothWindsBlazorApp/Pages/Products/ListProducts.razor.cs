@@ -12,7 +12,7 @@ namespace EBlocks.NothWindsBlazorApp.Pages.Products
     {
         public IEnumerable<Product> Products { get; set; }
 
-        public IEnumerable<Product> FilteredProducts { get; set; }
+        public List<Product> FilteredProducts { get; set; }
 
         public bool IsFilteringEnabled { get; set; }
 

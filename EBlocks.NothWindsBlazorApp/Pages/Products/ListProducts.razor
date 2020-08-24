@@ -4,7 +4,7 @@
 @using EBlocks.NothWindsBlazorApp.Pages.Filters;
 <h3>List Products</h3>
 
-<ProductsFilter SourceData="@Products" FIlteredData="@FilteredProducts" IsFilteringEnabled="@IsFilteringEnabled" />
+<ProductsFilter SourceData="@Products" @bind-FilteredData="@FilteredProducts" IsFilteringEnabled="@IsFilteringEnabled" />
 
 @if (base.FilteredProducts != null)
 {
@@ -27,6 +27,3 @@ else
     }
 }
 
-@*@code {
-
-    }*@
