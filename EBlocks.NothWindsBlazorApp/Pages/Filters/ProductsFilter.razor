@@ -1,13 +1,15 @@
 ﻿@using EBlocks.Models;
+@using EBlocks.Interfaces;
+@using Newtonsoft.Json;
 
 <h3>Products Filter</h3>
 
 <div>
-    <input type="checkbox" value="@isFilteringEnabled"/> Enable filtering
-    <div class="row">
+    <input type="checkbox" @bind-value="@IsFilteringEnabled" /> Enable filtering
+    <div class="row" hidden="@(!IsFilteringEnabled)">
         <div class="col">
             Filter Colunm :
-            <select @bind="@SelecteFilterColunm">
+            <select @onchange="@OnFilterColunmChange">
                 @foreach (var field in FilterFields)
                 {
                     <option value=@field>@field</option>
@@ -15,33 +17,173 @@
             </select>
 
         </div>
-        <div class="col">
-            Filter Value :
-        </div>
+        @if (@FilterValues != null)
+        {
+            @if (this.SelecteFilterColunm.Equals("category", StringComparison.OrdinalIgnoreCase))
+            {
+                <div class="col">
+                    Filter Value :
+                    <select @onchange="@OnFilterValueChange">
+                        @foreach (var field in FilterValues)
+                        {
+                            <option value=@field>@Oracle.Categories.FirstOrDefault(x => x.CategoryID.ToString().Equals(field))?.CategoryName</option>
+                        }
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="col">
+                    Filter Value :
+                    <select @onchange="@OnFilterValueChange">
+                        @foreach (var field in FilterValues)
+                        {
+                            <option value=@field>@Oracle.Supplier.FirstOrDefault(x => x.SupplierID.ToString().Equals(field))?.CompanyName</option>
+                        }
+                    </select>
+                </div>
+            }
+
+        }
+
     </div>
 </div>
 Selected Field: @SelecteFilterColunm;
 
 @code {
 
+    protected override void OnInitialized()
+    {
+
+        this.FilterFields = new List<string> {
+        "Category","Supplier"
+        };
+
+
+        this.FilterValues = null;
+
+        this.Oracle.OnCategoies_Updated += x =>
+        {
+            Console.WriteLine($"ProductsFilter.OnInitialized: Oracle.OnCategoies_Updated");
+            this.FilterValues = x.Select(cat => cat.CategoryID.ToString()).ToList();
+        };
+
+        base.OnInitialized();
+    }
+
+
+    //public string SelecteFiltervalue { get; set; }
+
+    //public string GroupByColunm { get; set; }
+
+    [Inject] public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
+
+    [Inject] public ICategoryHttpRepository CategoryHttpRepository { get; set; }
+
+    [Inject] public ISupplierHttpRepository SupplierHttpRepository { get; set; }
+
+    [Parameter] public IEnumerable<Product> SourceData { get; set; }
+
+    [Parameter] public IEnumerable<Product> FIlteredData { get; set; }
+
+
+    [Parameter] public bool IsFilteringEnabled { get; set; }
+
     public List<string> FilterFields { get; set; }
-
-    public List<string> CategoryValues { get; set; }
-
-    public List<string> SupplierValues { get; set; }
-
-    bool isFilteringEnabled { get; set; }
 
     public string SelecteFilterColunm { get; set; }
 
-    public string SelecteFiltervalue { get; set; }
+    public string SelecteFilterValue { get; set; }
 
-    public string GroupByColunm { get; set; }
+    public List<string> FilterValues { get; set; }
 
-    [Parameter] public IEnumerable<Product> List { get; set; }
+    //public List<string> SupplierValues { get; set; }
+
+    public async void OnFilterValueChange(ChangeEventArgs e)
+    {
+        Console.WriteLine($"Current value: {e.Value.ToString()}");
+        this.SelecteFilterValue = e.Value.ToString();
+    }
+
+    public async void OnFilterColunmChange(ChangeEventArgs e)
+    {
+        Console.WriteLine(e.Value);
+        this.SelecteFilterColunm = e.Value.ToString();
+
+        //this.UpdateSelectedFilterValues();
+
+        if (this.SelecteFilterColunm.Equals("category", StringComparison.OrdinalIgnoreCase))
+        {
+            var cats = await this.CategoryHttpRepository.GetAll("categories");
+
+            this.FilterValues = cats.Select((Category cat, int i) => cat.CategoryID.ToString()).ToList();
+
+            Console.WriteLine($"Filtered category ID's{JsonConvert.SerializeObject(this.FilterValues)}");
+
+            this.UpdateDisplayData(this.FilterCategories);
+        }
+        else if (this.SelecteFilterColunm.Equals("supplier", StringComparison.OrdinalIgnoreCase))
+        {
+            var sups = await this.SupplierHttpRepository.GetAll("suppliers");
+
+            this.FilterValues = sups.Select((Supplier sup, int i) => sup.SupplierID.ToString()).ToList();
+
+            Console.WriteLine($"Filtered supplier ID's{JsonConvert.SerializeObject(this.FilterValues)}");
+
+            this.UpdateDisplayData(this.FilterSuppliers);
+        }
+
+    }
+
+    //private void UpdateSelectedFilterValues()
+    //{
+
+    //    if (this.SelecteFilterColunm.Equals("category", StringComparison.OrdinalIgnoreCase))
+    //    {
+    //        var cats = this.CategoryHttpRepository.GetAll("cayegories");
+    //    }
+    //    else if (this.SelecteFilterColunm.Equals("supplier", StringComparison.OrdinalIgnoreCase))
+    //    {
+
+    //    }
+
+    //}
+
+    private void UpdateDisplayData(Func<IEnumerable<Product>, IEnumerable<Product>> filter)
+    {
+        this.FIlteredData = filter(this.SourceData);
+        Console.WriteLine($"Updated Filter: {this.SelecteFilterColunm}, Current Values ({this.FIlteredData.Count()}): {Newtonsoft.Json.JsonConvert.SerializeObject(this.FIlteredData)}");
+    }
 
 
-    public void OnFilterColunmChange(ChangeEventArgs e)
-    { }
+    private IEnumerable<Product> FilterCategories(IEnumerable<Product> source)
+    {
+        if (this.FilterValues == null || this.FilterValues.Count == 0)
+            return source;
+
+        IEnumerable<Product> result = new List<Product> { };
+        result = source.Where(product => product.CategoryID.ToString() == this.SelecteFilterValue);
+        return result;
+    }
+
+
+    private IEnumerable<Product> FilterSuppliers(IEnumerable<Product> source)
+    {
+        Console.WriteLine($"Filter supplier : Source{JsonConvert.SerializeObject(source)}");
+        Console.WriteLine($"Filter supplier : this.FilterValues: {JsonConvert.SerializeObject(this.FilterValues)}");
+
+
+        if (this.FilterValues == null || this.FilterValues.Count == 0)
+            return source;
+
+
+        IEnumerable<Product> result = new List<Product> { };
+        result = source.Where(product => this.FilterValues.Contains(product.SupplierID.ToString()));
+
+        Console.WriteLine($"Filter supplier : Result{JsonConvert.SerializeObject(result)}");
+
+        return result;
+    }
+
 
 }

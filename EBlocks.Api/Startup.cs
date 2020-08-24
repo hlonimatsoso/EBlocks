@@ -38,6 +38,10 @@ namespace EBlocks.Api
             
             services.AddTransient<IOrderRepository, DemoOrderRepo>();
             services.AddTransient<IProductRepository, DemoProductRepo>();
+            services.AddTransient<ICategoryRepository, DemoCategoryRepo>();
+            services.AddTransient<ISupplierRepository, DemoSupplierRepo>();
+            services.AddTransient<IOrderDetailsRepository, DemoOrderDetailsRepo>();
+
             services.AddTransient<INorthWindsService, NorthWindService>();
 
 

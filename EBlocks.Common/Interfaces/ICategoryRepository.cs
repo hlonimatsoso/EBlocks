@@ -4,8 +4,9 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface IBaseCollection
+    public interface ICategoryRepository : IRepository<ICategory>
     {
-         Guid Id { get; set; }
+
     }
 }
+ 

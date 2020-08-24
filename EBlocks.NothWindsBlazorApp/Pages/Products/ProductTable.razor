@@ -1,0 +1,90 @@
+﻿@using EBlocks.Models;
+
+@if (this.IsFilteredData)
+{
+    <h3>Filtered Product Data</h3>
+
+    <table  class="table">
+        <thead>
+            <tr>
+                <th>Product #</th>
+                <th scope="col">Supplier</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units In Stock</th>
+                <th scope="col">Units On Order</th>
+                <th scope="col">Quantity Per Unit</th>
+                <th scope="col">Discontinued</th>
+                @*<th scope="col">Product GUID</th>*@
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Product item in this.Data)
+            {
+                <tr>
+                    <th scope="col">@item.ProductID</th>
+                    <td class="col">@item.SupplierID</td>
+                    <td class="col">@item.CategoryID</td>
+                    <td class="col">@item.ProductName</td>
+                    <td class="col">@item.UnitPrice</td>
+                    <td class="col">@item.UnitsInStock</td>
+                    <td class="col">@item.UnitsOnOrder</td>
+                    <td class="col">@item.QuantityPerUnit</td>
+                    <td class="col">@item.Discontinued</td>
+                    @*<td class="col">@item.Id.ToString().Trim()</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Product Table</h3>
+    <table  class="table">
+        <thead>
+            <tr>
+                <th>Product #</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units In Stock</th>
+                <th scope="col">Units On Order</th>
+                <th scope="col">Quantity Per Unit</th>
+                <th scope="col">Discontinued</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Supplier</th>
+                @*<th scope="col">Product GUID</th>*@
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Product item in this.Data)
+            {
+                <tr>
+                    <th scope="col">@item.ProductID</th>
+                    <td class="col">@item.ProductName</td>
+                    <td class="col">@item.UnitPrice</td>
+                    <td class="col">@item.UnitsInStock</td>
+                    <td class="col">@item.UnitsOnOrder</td>
+                    <td class="col">@item.QuantityPerUnit</td>
+                    <td class="col">@item.Discontinued</td>
+                    <td class="col">@item.CategoryID</td>
+                    <td class="col">@item.SupplierID</td>
+                    @*<td class="col">@item.Id.ToString().Trim()</td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+    [Parameter] public bool IsFilteredData { get; set; }
+
+    [Parameter] public IEnumerable<Product> Data { get; set; }
+
+}

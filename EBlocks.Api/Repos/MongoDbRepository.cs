@@ -14,7 +14,7 @@ using System.Text;
 
 namespace EBlocks.Api.Repos
 {
-    public class MongoDbRepository<TEntity> : IRepository<TEntity> where TEntity : IBaseCollection
+    public class MongoDbRepository<TEntity> : IRepository<TEntity> //where TEntity : IMongoCollection
     {
         private MongoDatabase database;
         private MongoCollection<TEntity> collection;
@@ -39,15 +39,15 @@ namespace EBlocks.Api.Repos
 
         public bool Insert(TEntity entity)
         {
-            entity.Id = Guid.NewGuid();
+            //entity.Id = Guid.NewGuid();
             collection.Insert(entity);
             return true;
         }
 
         public bool Update(TEntity entity)
         {
-            if (entity.Id == null)
-                return Insert(entity);
+            //if (entity.Id == null)
+            //    return Insert(entity);
 
             return collection
             .Save(entity)
@@ -56,9 +56,9 @@ namespace EBlocks.Api.Repos
 
         public bool Delete(TEntity entity)
         {
-            return collection
-            .Remove(Query.EQ("_Id", entity.Id))
-            .DocumentsAffected > 0;
+            return true;// collection
+            //.Remove(Query.EQ("_Id", entity.Id))
+            //.DocumentsAffected > 0;
         }
 
         public IList<TEntity>

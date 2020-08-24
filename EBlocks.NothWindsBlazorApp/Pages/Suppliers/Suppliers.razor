@@ -1,0 +1,43 @@
+﻿@page "/suppliers"
+@inherits SuppliersBase
+
+<h3>Suppliers</h3>
+
+@if (SuppliersList!= null)
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category name</th>
+                    <th>Contact</th>
+                    <th>City</th>
+                    <th>Region</th>
+
+                </tr>
+            </thead>
+
+            @foreach (EBlocks.Models.Supplier item in SuppliersList)
+            {
+                <tr>
+                    <td>
+                        @item.CompanyName.;
+                    </td>
+                    <td>
+                        @item.ContactName.;
+                    </td>
+                    <td>
+                        @item.City;
+                    </td>
+                    <td>
+                        @item.Region;
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <p>Loading...</p>
+}

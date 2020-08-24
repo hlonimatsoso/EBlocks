@@ -3,19 +3,19 @@ using System;
 
 namespace EBlocks.Interfaces
 {
-    public interface IProduct: IBaseCollection
+    public interface IProduct//: IMongoCollection
     {
          int ProductID { get; set; }
 
-         int SupplierID { get; set; }
+         Guid SupplierID { get; set; }
 
          Supplier Supplier { get; set; }
 
-         int CategoryID { get; set; }
+         Guid CategoryID { get; set; }
 
          Category Category { get; set; }
 
-         Guid Id { get; set; }
+         //Guid Id { get; set; }
 
          string ProductName { get; set; }
          int QuantityPerUnit { get; set; }

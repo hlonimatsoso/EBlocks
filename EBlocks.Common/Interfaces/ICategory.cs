@@ -4,9 +4,9 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface ICategory
+    public interface ICategory//: IMongoCollection
     {
-         int CategoryID { get; set; }
+         Guid CategoryID { get; set; }
 
          string CategoryName { get; set; }
 

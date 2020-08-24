@@ -4,9 +4,9 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface ISupplier
+    public interface ISupplier//: IMongoCollection
     {
-        int SupplierID { get; set; }
+        Guid SupplierID { get; set; }
 
         string CompanyName { get; set; }
 

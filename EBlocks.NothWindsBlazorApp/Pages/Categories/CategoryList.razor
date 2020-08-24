@@ -1,0 +1,46 @@
+﻿
+@page "/categories"
+@inherits CategoryListBase;
+<h3>Category List</h3>
+
+
+@if (CategoriesList != null)
+{
+    <div>
+        <table  class="table">
+
+            <thead>
+                <tr>
+                    <th>Category name</th>
+                    <th>Picture</th>
+                    <th>Description</th>
+                    <th>Category ID</th>
+
+                </tr>
+            </thead>
+
+            @foreach (EBlocks.Models.Category item in CategoriesList)
+            {
+                <tr>
+                    <td>
+                        @item.CategoryName;
+                    </td>
+                    <td>
+                        @item.Picture;
+                    </td>
+                    <td>
+                        @item Description.;
+                    </td>
+                    <td>
+                        @item.CategoryID.;
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+else
+{
+    <p>Loading...</p>
+}
+

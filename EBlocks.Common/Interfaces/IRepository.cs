@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface IRepository<T> where T: IBaseCollection
+    public interface IRepository<T> //where T: IMongoCollection
     {
 
         bool Insert(T entity);

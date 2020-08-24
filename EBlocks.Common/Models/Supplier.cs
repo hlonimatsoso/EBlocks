@@ -7,7 +7,7 @@ namespace EBlocks.Models
 {
     public class Supplier:ISupplier
     {
-        public int SupplierID { get; set; }
+        public Guid SupplierID { get; set; }
 
         public string CompanyName { get; set; }
 
@@ -27,7 +27,6 @@ namespace EBlocks.Models
         public string Fax { get; set; }
 
         public string HomePage { get; set; }
-
-
+        //public Guid Id { get; set ; }
     }
 }

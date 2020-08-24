@@ -24,8 +24,6 @@ namespace EBlocks.Api.Repos
         public event Action<IOrder> OnCreated;
         public event Action<IOrder> OnUpdated;
         public event Action<IOrder> OnDeleted;
-        //public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
-        //public event Action<IEnumerable<IOrder>> OnCollectionInitialized;
 
 
         public bool Delete(IOrder entity)

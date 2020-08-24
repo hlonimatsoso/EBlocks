@@ -1,4 +1,6 @@
-﻿@inherits OrdersBase;
+﻿@page "/orders"
+
+@inherits OrdersBase;
 @using EBlocks.Interfaces
 
 <h3>NorthWind's Orders</h3>
@@ -11,18 +13,18 @@
                 <tr>
                     <th scope="col">Order #</th>
                     <th scope="col">Order Date</th>
-                    <th scope="col">Order GUID</th>
+                    @*<th scope="col">Order GUID</th>*@
                 </tr>
             </thead>
 
             <tbody>
                 @foreach (IOrder item in Orders)
                 {
-                <tr>
-                    <th scope="col">@item.OrderID</th>
-                    <td class="col">@item.OrderDate</td>
-                    <td class="col">@item.Id.ToString().Trim()</td>
-                </tr>
+                    <tr>
+                        <th scope="col">@item.OrderID</th>
+                        <td class="col">@item.OrderDate</td>
+                        @*<td class="col">@item.Id.ToString().Trim()</td>*@
+                    </tr>
                 }
             </tbody>
         </table>
@@ -32,27 +34,27 @@
 }
 
 @*<table class="table table-dark">
-    <thead>
-        <tr>
-            <th scope="col">Order #</th>
-            <th scope="col">Order GUID</th>
-            <th scope="col">Order Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (this.Orders != null)
-            @foreach (IOrder order in this.Orders)
-            {
+        <thead>
+            <tr>
+                <th scope="col">Order #</th>
+                <th scope="col">Order GUID</th>
+                <th scope="col">Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (this.Orders != null)
+                @foreach (IOrder order in this.Orders)
+                {
 
-                <tr>
-                    <th scope="col">@order.OrderID</th>
-                    <td class="col">@order.Id.ToString().Trim()</td>
-                    <td class="col">@order.OrderDate</td>
-                </tr>
+                    <tr>
+                        <th scope="col">@order.OrderID</th>
+                        <td class="col">@order.Id.ToString().Trim()</td>
+                        <td class="col">@order.OrderDate</td>
+                    </tr>
 
-            }
-    </tbody>
-</table>*@
+                }
+        </tbody>
+    </table>*@
 
 
 @code {

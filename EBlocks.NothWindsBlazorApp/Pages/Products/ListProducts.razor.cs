@@ -12,14 +12,21 @@ namespace EBlocks.NothWindsBlazorApp.Pages.Products
     {
         public IEnumerable<Product> Products { get; set; }
 
+        public IEnumerable<Product> FilteredProducts { get; set; }
+
+        public bool IsFilteringEnabled { get; set; }
+
+
         [Inject] public IProductsHttpRepository Repo { get; set; }
 
-        [Inject] public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
+        //[Inject] public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
             this.Products = await this.Repo.GetAll("products");
-            this.Oracle.OnProducts_Updated += Oracle_OnProducts_Updated;
+            this.FilteredProducts = null;
+
+          //  this.Oracle.OnProducts_Updated += Oracle_OnProducts_Updated;
         }
 
         private void Oracle_OnProducts_Updated(IEnumerable<IProduct> products)

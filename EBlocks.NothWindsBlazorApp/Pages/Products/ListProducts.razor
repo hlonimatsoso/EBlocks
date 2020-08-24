@@ -1,69 +1,30 @@
 ﻿@page "/products"
 @inherits ListProductsBase;
 @using EBlocks.Interfaces;
-@using System.Text.Json;
+@using EBlocks.NothWindsBlazorApp.Pages.Filters;
 <h3>List Products</h3>
 
-@if (base.Products != null)
+<ProductsFilter SourceData="@Products" FIlteredData="@FilteredProducts" IsFilteringEnabled="@IsFilteringEnabled" />
+
+@if (base.FilteredProducts != null)
 {
+    <p>Filtered</p>
+    <ProductTable Data="@FilteredProducts" IsFilteredData="@IsFilteringEnabled" />
 
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>Product #</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Category</th>
-                <th scope="col">Supplier</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Units In Stock</th>
-                <th scope="col">Units On Order</th>
-                <th scope="col">Quantity Per Unit</th>
-                <th scope="col">Discontinued</th>
-                <th scope="col">Product GUID</th>
-
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (IProduct item in this.Products)
-            {
-                <tr>
-                    <th scope="col">@item.ProductID</th>
-                    <td class="col">@item.ProductName</td>
-                    <td class="col">@item.CategoryID</td>
-                    <td class="col">@item.SupplierID</td>
-                    <td class="col">@item.UnitPrice</td>
-                    <td class="col">@item.UnitsInStock</td>
-                    <td class="col">@item.UnitsOnOrder</td>
-                    <td class="col">@item.QuantityPerUnit</td>
-                    <td class="col">@item.Discontinued</td>
-                    <td class="col">@item.Id.ToString().Trim()</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    @*<span>WTF !</span>
-
-        <table id="table"
-               data-group-by="true"
-               data-group-by-field="SupplierID"
-               data-url="@JsonSerializer.Serialize(this.Products.First())">
-            <thead>
-                kgn t
-                <tr>
-                    <th data-field="ProductName">Product Name</th>
-                    <th data-field="SupplierID">Supplier ID</th>
-                    <th data-field="CategoryID">Category ID</th>
-                </tr>
-            </thead>
-        </table>*@
 }
 else
 {
-    <p>Loading...</p>
+
+    @if (this.Products != null)
+    {
+        <p>As Is</p>
+
+        <ProductTable Data="@Products" IsFilteredData="@IsFilteringEnabled" />
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
 }
 
 @*@code {

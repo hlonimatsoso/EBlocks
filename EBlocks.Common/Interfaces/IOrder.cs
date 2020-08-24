@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface IOrder : IBaseCollection
+    public interface IOrder : IMongoCollection
     {
          int OrderID { get; set; }
 

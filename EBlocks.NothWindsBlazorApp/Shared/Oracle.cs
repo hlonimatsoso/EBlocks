@@ -11,7 +11,23 @@ namespace EBlocks.NothWindsBlazorApp.Shared
     public class Oracle : IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier>
     {
         // Live manual cache
-        public IEnumerable<IProduct> Products { get; set; }
+        public IEnumerable<IProduct> Products {
+            get
+            {
+                return this._products;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    this._products = value;
+                    if (this.Products.Count() > 0)
+                        this.OnProducts_Updated?.Invoke(value);
+                }
+                else
+                    Console.WriteLine("IProduct collection is empty");
+            }
+        }
         public IEnumerable<IOrder> Orders
         {
             get
@@ -32,7 +48,23 @@ namespace EBlocks.NothWindsBlazorApp.Shared
         }
         public IEnumerable<IOrderDetails> OrderDetails { get; set; }
         public IEnumerable<ISupplier> Supplier { get; set; }
-        public IEnumerable<ICategory> Categories { get; set; }
+        public IEnumerable<ICategory> Categories {
+            get
+            {
+                return this._categories;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    this._categories = value;
+                    if (this.Categories.Count() > 0)
+                        this.OnCategoies_Updated?.Invoke(value);
+                }
+                else
+                    Console.WriteLine("Icategory collection is empty");
+            }
+        }
 
         //Events
         public event Action<IEnumerable<IProduct>> OnProducts_Updated;

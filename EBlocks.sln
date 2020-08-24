@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks.Api", "EBlocks.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks.Data", "EBlocks.Data\EBlocks.Data.csproj", "{0830AF84-0FA6-4A11-BADD-317DA2EFE9B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks.NothWindsBlazorApp", "EBlocks.NothWindsBlazorApp\EBlocks.NothWindsBlazorApp.csproj", "{308D3840-C336-4325-9C55-5F6533EA579C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks.NothWindsBlazorApp", "EBlocks.NothWindsBlazorApp\EBlocks.NothWindsBlazorApp.csproj", "{308D3840-C336-4325-9C55-5F6533EA579C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBlocks", "EBlocks.Common\EBlocks.csproj", "{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EBlocks", "EBlocks.Common\EBlocks.csproj", "{BE5F5C2A-99A3-4238-AB72-C16B3B5D4D67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

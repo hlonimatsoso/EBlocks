@@ -4,7 +4,8 @@ using System.Text;
 
 namespace EBlocks.Interfaces
 {
-    public interface ISupplierRepository:IRepository<ISupplier>
+    public interface IMongoCollection
     {
+         Guid Id { get; set; }
     }
 }
