@@ -6,38 +6,21 @@
 
 @if (CategoriesList != null)
 {
-    <div>
-        <table  class="table">
+    <MatTable Items="@CategoriesList" class="mat-elevation-z5 shorterTable">
+        <MatTableHeader>
+            <th>Category Name</th>
+            <th>Picture</th>
+            <th>Description</th>
+            <th>Category ID</th>
+        </MatTableHeader>
+        <MatTableRow>
+            <td>@context.CategoryName</td>
+            <td>@context.Picture</td>
+            <td>@context.Description</td>
+            <td>@context.CategoryID</td>
+        </MatTableRow>
+    </MatTable>
 
-            <thead>
-                <tr>
-                    <th>Category name</th>
-                    <th>Picture</th>
-                    <th>Description</th>
-                    <th>Category ID</th>
-
-                </tr>
-            </thead>
-
-            @foreach (EBlocks.Models.Category item in CategoriesList)
-            {
-                <tr>
-                    <td>
-                        @item.CategoryName;
-                    </td>
-                    <td>
-                        @item.Picture;
-                    </td>
-                    <td>
-                        @item Description.;
-                    </td>
-                    <td>
-                        @item.CategoryID.;
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
 }
 else
 {

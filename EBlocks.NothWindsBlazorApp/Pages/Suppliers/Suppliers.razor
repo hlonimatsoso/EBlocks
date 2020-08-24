@@ -3,39 +3,25 @@
 
 <h3>Suppliers</h3>
 
-@if (SuppliersList!= null)
+@if (SuppliersList != null)
 {
-    <div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Category name</th>
-                    <th>Contact</th>
-                    <th>City</th>
-                    <th>Region</th>
+    <MatTable Items="@SuppliersList" class="mat-elevation-z5 shorterTable">
+        <MatTableHeader>
+            <th>Company Name</th>
+            <th>Contact</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Home Page</th>
+        </MatTableHeader>
+        <MatTableRow>
+            <td>@context.CompanyName</td>
+            <td>@context.ContactName</td>
+            <td>@context.City</td>
+            <td>@context.Region</td>
+            <td>@context.HomePage</td>
+        </MatTableRow>
+    </MatTable>
 
-                </tr>
-            </thead>
-
-            @foreach (EBlocks.Models.Supplier item in SuppliersList)
-            {
-                <tr>
-                    <td>
-                        @item.CompanyName.;
-                    </td>
-                    <td>
-                        @item.ContactName.;
-                    </td>
-                    <td>
-                        @item.City;
-                    </td>
-                    <td>
-                        @item.Region;
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
 }
 else
 {
