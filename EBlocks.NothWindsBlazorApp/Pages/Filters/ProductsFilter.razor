@@ -19,30 +19,31 @@
         </div>
         @if (@FilterValues != null)
         {
-            @if (this.SelecteFilterColunm.Equals("category", StringComparison.OrdinalIgnoreCase))
-            {
-                <div class="col">
-                    Filter Value :
-                    <select @onchange="@OnFilterValueChange">
-                        @foreach (var field in FilterValues)
-                        {
-                            <option value=@field>@Oracle.Categories.FirstOrDefault(x => x.CategoryID.ToString().Equals(field))?.CategoryName</option>
-                        }
-                    </select>
-                </div>
-            }
-            else
-            {
-                <div class="col">
-                    Filter Value :
-                    <select @onchange="@OnFilterValueChange">
-                        @foreach (var field in FilterValues)
-                        {
-                            <option value=@field>@Oracle.Supplier.FirstOrDefault(x => x.SupplierID.ToString().Equals(field))?.CompanyName</option>
-                        }
-                    </select>
-                </div>
-            }
+            @if (this.SelecteFilterColunm != null)
+                @if (this.SelecteFilterColunm.Equals("category", StringComparison.OrdinalIgnoreCase))
+                {
+                    <div class="col">
+                        Filter Value :
+                        <select @onchange="@OnFilterValueChange">
+                            @foreach (var field in FilterValues)
+                            {
+                                <option value=@field>@Oracle.Categories.FirstOrDefault(x => x.CategoryID.ToString().Equals(field))?.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="col">
+                        Filter Value :
+                        <select @onchange="@OnFilterValueChange">
+                            @foreach (var field in FilterValues)
+                            {
+                                <option value=@field>@Oracle.Supplier.FirstOrDefault(x => x.SupplierID.ToString().Equals(field))?.CompanyName</option>
+                            }
+                        </select>
+                    </div>
+                }
 
         }
 
