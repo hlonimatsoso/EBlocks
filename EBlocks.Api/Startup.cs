@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EBlocks.Api.Repos;
+using EBlocks.Data;
 using EBlocks.Interfaces;
 using EBlocks.Models;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+//using EBlocks.d;
 
 namespace EBlocks.Api
 {
@@ -20,7 +22,12 @@ namespace EBlocks.Api
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+
+            //Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -44,6 +51,11 @@ namespace EBlocks.Api
 
             services.AddTransient<INorthWindsService, NorthWindService>();
 
+            services.AddOptions();
+            //services.Configure<MongoSettings>(options => Configuration.GetSection("MongoDbSettings").Bind(options));
+            services.Configure<MongoSettings>(Configuration.GetSection("MongoDbSettings"));
+            services.AddSingleton<MongoSettings>();
+            services.AddScoped(typeof(IMongoRepo<>), typeof(MongoRepo<>));
 
 
             services.AddCors(o => o.AddPolicy("Policy", builder =>

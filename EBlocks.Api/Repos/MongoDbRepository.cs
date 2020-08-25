@@ -24,7 +24,7 @@ namespace EBlocks.Api.Repos
 
         private IOptions<AppSettings> _appSettings;
 
-        public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IOracle<IProduct, ICategory, IOrder, IOrderDetails, ISupplier> Oracle { get ; set ; }
        
         public MongoDbRepository()
         {

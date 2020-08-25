@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EBlocks.Common\EBlocks.csproj" />
+    <ProjectReference Include="..\EBlocks.Data\EBlocks.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 
